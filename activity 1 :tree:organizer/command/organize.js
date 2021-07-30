@@ -15,9 +15,11 @@ function organizefn(scn){
   let content = fs.readdirSync(pathofmain);
   let n = content.length;
 
+  //creating organize folder
   let newfolderpath = path.join(pathofmain,"organize folder");
   fs.mkdirSync(newfolderpath);
 
+  //creating sub folders inside organize folder with the help of path
   let mediapath = path.join(newfolderpath,"media");
   let archivespath = path.join(newfolderpath,"archives");
   let documentspath = path.join(newfolderpath,"documents");
@@ -29,6 +31,7 @@ function organizefn(scn){
   
 
 
+  //taking ONE content(file inside random folder ) at a time and organizing it
   for (let i= 0 ; i < n ; i++){
     let filename = content[i];
     let fileext = getFileExtension(filename);
@@ -47,15 +50,17 @@ function organizefn(scn){
     
 }
 
+// organizing logic is here(copy and paste in respective folder).
 function mainwork(scrfilepath, newfolderpath, x){
   
   let finaldespath = path.join(newfolderpath,x);
   let nameoffile = path.basename(scrfilepath);
   let FDP = path.join(finaldespath, nameoffile);
   fs.copyFileSync(scrfilepath, FDP);
+
 }
 
-
+// taking out the extension of each file.
 function getFileExtension(filename){
   let arr = [];
   arr = filename.split(".");
